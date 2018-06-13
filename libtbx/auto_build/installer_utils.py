@@ -94,6 +94,7 @@ def untar(pkg_name, log=sys.stdout, verbose=False, change_ownership=False,
   dir_name = os.path.basename(pkg_name) \
                  .replace(".tar.bz2", "") \
                  .replace(".tar.gz", "") \
+                 .replace(".tar.xz", "") \
                  .replace(".tgz", "") \
                  .replace(".tar", "")
   if check_output_path:
