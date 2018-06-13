@@ -72,6 +72,8 @@ def untar(pkg_name, log=sys.stdout, verbose=False, change_ownership=False,
   cmd = [ "tar", "x%s%sf" % (owner_flag, verbose_flag) ]
   if pkg_name.endswith("gz"):
     cmd = ["tar", "zx%s%sf" % (owner_flag, verbose_flag) ]
+  elif pkg_name.endswith("xz"):
+    cmd = ["tar", "Jx%s%sf" % (owner_flag, verbose_flag) ]
   elif pkg_name.endswith("bz2"):
     cmd = ["tar", "jx%s%sf" % (owner_flag, verbose_flag) ]
   args = cmd + [pkg_name]
