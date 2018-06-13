@@ -72,6 +72,7 @@ def untar(pkg_name, log=sys.stdout, verbose=False, change_ownership=False,
   cmd = [ "tar", "x%s%sf" % (owner_flag, verbose_flag) ]
   if pkg_name.endswith("gz"):
     cmd = ["tar", "zx%s%sf" % (owner_flag, verbose_flag) ]
+  # Add support for .tar.xz (motivated by newer versions of glib being .tar.xz)
   elif pkg_name.endswith("xz"):
     cmd = ["tar", "Jx%s%sf" % (owner_flag, verbose_flag) ]
   elif pkg_name.endswith("bz2"):
@@ -94,7 +95,7 @@ def untar(pkg_name, log=sys.stdout, verbose=False, change_ownership=False,
   dir_name = os.path.basename(pkg_name) \
                  .replace(".tar.bz2", "") \
                  .replace(".tar.gz", "") \
-                 .replace(".tar.xz", "") \
+                 .replace(".tar.xz", "") \ # .tar.xz support for glib tarballs
                  .replace(".tgz", "") \
                  .replace(".tar", "")
   if check_output_path:

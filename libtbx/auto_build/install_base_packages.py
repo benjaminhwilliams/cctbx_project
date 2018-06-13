@@ -1222,6 +1222,7 @@ _replace_sysconfig_paths(build_time_vars)
       cert_file
 
   def build_freetype(self):
+    # Use FREETYPE_URL to get newer version, for building on Ubuntu 18.04
     self.build_compiled_package_simple(
       pkg_url=FREETYPE_URL,
       pkg_name=FREETYPE_PKG,
@@ -1258,6 +1259,7 @@ _replace_sysconfig_paths(build_time_vars)
 
     # glib
     pkg_log = self.start_building_package("glib")
+    # Use GLIB_URL to get newer version of glib, for building in Ubuntu 18.04
     pkg = self.fetch_package(pkg_name=GLIB_PKG, pkg_url=GLIB_URL)
     if self.check_download_only(GLIB_PKG): return
 
@@ -1291,6 +1293,7 @@ _replace_sysconfig_paths(build_time_vars)
   def build_fontconfig(self):
     # fontconfig
     pkg_log = self.start_building_package("fontconfig")
+    # Use FONTCONFIG_URL to get newer version, for building on Ubuntu 18.04
     pkg = self.fetch_package(pkg_name=FONTCONFIG_PKG, pkg_url=FONTCONFIG_URL)
     if self.check_download_only(FONTCONFIG_PKG): return
     self.untar_and_chdir(pkg=pkg, log=pkg_log)

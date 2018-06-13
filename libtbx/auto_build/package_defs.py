@@ -89,7 +89,8 @@ HDF5_PKG = "hdf5-1.10.1.tar.bz2"
 
 # GUI dependencies
 LIBPNG_PKG = "libpng-1.5.26.tar.gz"
-FREETYPE_URL = "https://sourceforge.net/projects/freetype/files/freetype2/2.9.1/"
+# Include a newer version of freetype for the sake of building in Ubuntu 18.04
+FREETYPE_URL = "https://download.savannah.gnu.org/releases/freetype/"
 FREETYPE_PKG = "freetype-2.9.1.tar.gz"
 
 # Linux-only
@@ -97,9 +98,11 @@ FREETYPE_PKG = "freetype-2.9.1.tar.gz"
 WXPYTHON_PKG = "wxPython-src-3.0.2.0.tar.bz2"
 GETTEXT_PKG = "gettext-0.19.7.tar.gz"
 LIBFFI_PKG = "libffi-3.2.1.tar.gz"
+# Include a newer version of glib for the sake of building in Ubuntu 18.04
 GLIB_URL = "https://ftp.gnome.org/pub/gnome/sources/glib/2.56/"
 GLIB_PKG = "glib-2.56.1.tar.xz"
 EXPAT_PKG = "expat-2.1.0.tar.gz"
+# Include newer version of fontconfig for the sake of building in Ubuntu 18.04
 FONTCONFIG_URL = "https://www.freedesktop.org/software/fontconfig/release/"
 FONTCONFIG_PKG = "fontconfig-2.13.0.tar.gz"
 RENDER_PKG = "renderproto-0.11.1.tar.gz"
@@ -279,6 +282,7 @@ def fetch_all_dependencies (dest_dir,
         MATPLOTLIB_PKG, PY2APP_PKG, SEND2TRASH_PKG,
       ] :
       fetch_package(pkg_name)
+    # Newer versions of freetype, glib and fontconfig (for building in Ubuntu)
     for pkg_name, pkg_url in [
         (FREETYPE_PKG, FREETYPE_URL), 
         (GLIB_PKG, GLIB_URL),
