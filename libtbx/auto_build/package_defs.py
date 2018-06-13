@@ -96,9 +96,11 @@ FREETYPE_PKG = "freetype-2.6.3.tar.gz"
 WXPYTHON_PKG = "wxPython-src-3.0.2.0.tar.bz2"
 GETTEXT_PKG = "gettext-0.19.7.tar.gz"
 LIBFFI_PKG = "libffi-3.2.1.tar.gz"
-GLIB_PKG = "glib-2.46.2.tar.gz"
+GLIB_PKG = "glib-2.56.1.tar.xz"
+GLIB_URL = "https://ftp.gnome.org/pub/gnome/sources/glib/2.56/"
 EXPAT_PKG = "expat-2.1.0.tar.gz"
-FONTCONFIG_PKG = "fontconfig-2.11.1.tar.gz"
+FONTCONFIG_PKG = "fontconfig-2.13.0.tar.gz"
+FONTCONFIG_URL = "https://www.freedesktop.org/software/fontconfig/release/"
 RENDER_PKG = "renderproto-0.11.1.tar.gz"
 XRENDER_PKG = "libXrender-0.9.7.tar.gz"
 XFT_PKG = "libXft-2.3.2.tar.gz"
@@ -276,6 +278,11 @@ def fetch_all_dependencies (dest_dir,
         MATPLOTLIB_PKG, PY2APP_PKG, SEND2TRASH_PKG,
       ] :
       fetch_package(pkg_name)
+    for pkg_name, pkg_url in [
+        (GLIB_PKG, GLIB_URL),
+        (FONTCONFIG_PKG, FONTCONFIG_URL),
+      ]:
+      fetch_package(pkg_name, pkg_url)
 
 def fetch_svn_repository (pkg_name, pkg_url=None, working_copy=True,
     delete_if_present=False) :
