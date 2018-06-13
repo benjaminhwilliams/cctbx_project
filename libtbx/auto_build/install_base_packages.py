@@ -1259,7 +1259,7 @@ _replace_sysconfig_paths(build_time_vars)
     # glib
     pkg_log = self.start_building_package("glib")
     pkg = self.fetch_package(pkg_name=GLIB_PKG, pkg_url=GLIB_URL)
-    if self.check_download_only(GLIB_PKG, pkg_url=GLIB_URL): return
+    if self.check_download_only(GLIB_PKG): return
 
     # Mock executables.
     if (not op.isdir(op.join(self.base_dir, "bin"))) :
@@ -1292,7 +1292,7 @@ _replace_sysconfig_paths(build_time_vars)
     # fontconfig
     pkg_log = self.start_building_package("fontconfig")
     pkg = self.fetch_package(pkg_name=FONTCONFIG_PKG, pkg_url=FONTCONFIG_URL)
-    if self.check_download_only(FONTCONFIG_PKG, pkg_url=FONTCONFIG_URL): return
+    if self.check_download_only(FONTCONFIG_PKG): return
     self.untar_and_chdir(pkg=pkg, log=pkg_log)
     # Create font directories.
     if (not op.isdir(op.join(self.base_dir, "share", "fonts"))) :
