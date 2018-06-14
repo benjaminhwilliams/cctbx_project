@@ -111,7 +111,9 @@ XFT_PKG = "libXft-2.3.2.tar.gz"
 
 CAIRO_PKG = "cairo-1.14.4.tar.gz"
 PIXMAN_PKG = "pixman-0.34.0.tar.gz"
-HARFBUZZ_PKG = "harfbuzz-1.1.3.tar.gz"
+# Include a newer version of harfbuzz for the sake of building in Ubuntu 18.04
+HARFBUZZ_URL = "https://www.freedesktop.org/software/harfbuzz/release/"
+HARFBUZZ_PKG = "harfbuzz-1.8.1.tar.bz2"
 GDK_PIXBUF_PKG = "gdk-pixbuf-2.32.3.tar.gz"
 PANGO_PKG = "pango-1.38.1.tar.gz"
 ATK_PKG = "atk-2.18.0.tar.gz"
@@ -277,13 +279,14 @@ def fetch_all_dependencies (dest_dir,
     for pkg_name in [
         LIBPNG_PKG, GETTEXT_PKG, EXPAT_PKG,
         RENDER_PKG, XRENDER_PKG, XFT_PKG, PIXMAN_PKG,
-        CAIRO_PKG, HARFBUZZ_PKG, PANGO_PKG, ATK_PKG, TIFF_PKG, GTK_PKG,
+        CAIRO_PKG, PANGO_PKG, ATK_PKG, TIFF_PKG, GTK_PKG,
         GTK_ENGINE_PKG, GTK_THEME_PKG, FONT_PKG, WXPYTHON_PKG,
         MATPLOTLIB_PKG, PY2APP_PKG, SEND2TRASH_PKG,
       ] :
       fetch_package(pkg_name)
-    # Newer versions of freetype, glib and fontconfig (for building in Ubuntu)
+    # Newer versions of certain packages (for building in Ubuntu)
     for pkg_name, pkg_url in [
+        (HARFBUZZ_PKG, HARFBUZZ_URL),
         (FREETYPE_PKG, FREETYPE_URL), 
         (GLIB_PKG, GLIB_URL),
         (FONTCONFIG_PKG, FONTCONFIG_URL),

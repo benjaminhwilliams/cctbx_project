@@ -1377,8 +1377,13 @@ _replace_sysconfig_paths(build_time_vars)
       old_cflags = os.environ.get('CXXFLAGS', '')
       os.environ['CXXFLAGS'] = old_cflags + ' -march=i686'
 
-    for pkg, name in zip([CAIRO_PKG, HARFBUZZ_PKG],["cairo", "harfbuzz"]) :
-      self.build_compiled_package_simple(pkg_name=pkg, pkg_name_label=name)
+    self.build_compiled_package_simple(
+      pkg_name=CAIRO_PKG, pkg_name_label="cairo")
+    # Build a newer Harfbuzz, for the sake of the Ubuntu 18.04 build
+    self.build_compiled_package_simple(
+      pkg_name=HARFBUZZ_PKG,
+      pkg_url=HARFBUZZ_URL,
+      pkg_name_label="harfbuzz")
     self.build_compiled_package_simple(
       pkg_name=PANGO_PKG, pkg_name_label="pango",
       extra_config_args=["--enable-introspection=no"])
